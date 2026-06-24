@@ -1,37 +1,56 @@
-Code Terminal
+# code-terminal
 
-Stack
+A terminal-first AI coding assistant that helps you modify and manage codebases through natural language interactions.
 
-Bun
-TypeScript
-Hono
+## Stack
 
+| Layer | Technology |
+|---|---|
+| Runtime & Package Manager | [Bun](https://bun.sh) |
+| Language | TypeScript |
+| HTTP Server | [Hono](https://hono.dev) |
+| Terminal UI | [OpenTUI](https://opentui.com) |
 
-Note: Even though Bun ships with a built-in HTTP server (Bun.serve), this project uses Hono for an ergonomic router with type-safe RPC client inference — beyond the framework types, Hono provides hono/client: you export the app type and the client automatically infers paths, methods, params, body and response of each route, giving end-to-end typing between server and client with no code generation.
+> **Why Hono over `Bun.serve` directly?** Hono adds an ergonomic router and `hono/client` — export the app type and the RPC client automatically infers paths, methods, params, body, and response of each route. End-to-end type safety between server and client, no code generation required.
 
-Code Terminal is a terminal-first AI coding assistant that helps, modify, and manage codebases through natural language interactions.
+## Architecture
 
-The platform is built on five core layers:
+code-terminal is built on five core layers:
 
+1. **Terminal UI** — Conversations, task visibility, execution logs, diffs, and interactive developer workflows (powered by OpenTUI).
+2. **Agent Runtime** — Coordinates reasoning, planning, and task execution.
+3. **Tool Execution Layer** — File operations, code search, Git workflows, and command execution.
+4. **LLM Provider Layer** — Unified interface across multiple AI providers.
+5. **File Operations** — Repository navigation, file access, modifications, and workspace interactions.
 
+## Project Structure
 
+```
+code-terminal/
+├── server/       # Hono HTTP server
+└── cli/          # OpenTUI terminal interface
+```
 
+## Getting Started
 
-Terminal UI – Provides conversations, task visibility, execution logs, diffs, and interactive developer workflows.
+Install dependencies from the repo root:
 
+```sh
+bun install
+```
 
+**Run the server:**
 
-Agent Runtime – Coordinates reasoning, planning, and task execution.
+```sh
+cd server && bun run dev
+```
 
+Starts on `http://localhost:3000`. Available routes: `GET /` and `GET /health`.
 
+**Run the CLI:**
 
-Tool Execution Layer – Enables access to file operations, code search, Git workflows, command execution, and other development tools.
+```sh
+cd cli && bun run dev
+```
 
-
-
-LLM Provider Layer – Integrates with multiple AI providers through a unified interface.
-
-
-
-File Operations – Manages repository navigation, file access, modifications, and workspace interactions.
-
+Press `Ctrl+C` to exit the TUI.
