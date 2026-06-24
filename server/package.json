@@ -1,0 +1,12 @@
+{
+  "name": "@code-terminal/server",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot src/index.ts",
+    "start": "bun src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.7.11"
+  }
+}
